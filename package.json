@@ -20,7 +20,15 @@
         "command": "extension.ghc",
         "title": "ghc-issues"
       }
-    ]
+    ],
+    "views":{
+      "explorer": [
+        {
+          "id": "ghc.issue.treeView",
+          "name": "Issues"
+        }
+      ]
+    }
   },
   "scripts": {
     "vscode:prepublish": "npm run compile",
