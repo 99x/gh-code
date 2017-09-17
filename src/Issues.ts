@@ -28,7 +28,7 @@ export class Issues{
             let res = await axios.get(apiUrl);
             return res.data;
         }catch(e){
-            console.log(e);
+            console.error(e);
             return false ;
         }
     }
@@ -40,7 +40,7 @@ export class Issues{
             let res = await axios.post(apiUrl,label);
             console.log(res);
         }catch(e){
-            console.log(e);
+            console.error(e);
             return false;
         }
     }

@@ -8,7 +8,7 @@ export class HtmlProvider{
             let data = await axios.get(url);
             result = data.data;
         }catch(e){
-            console.log(e);
+            console.error(e);
         }
         return result;
     }
@@ -36,8 +36,8 @@ export class HtmlProvider{
                 }    
             </style>`;
         }catch(e){
-            output += 'Loading failed.. check your internet connection';
-            console.log(e);
+            output += 'Loading failed.. '+e.message;
+            console.error(e);
         }
         return output;
     }
