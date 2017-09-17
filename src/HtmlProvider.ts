@@ -3,42 +3,42 @@ const axios = require('axios')
 export class HtmlProvider{
 
     private async _getIssues(url:string){
-        let result = []
+        let result = [];
         try{
-            let data = await axios.get(url)
-            result = data.data
+            let data = await axios.get(url);
+            result = data.data;
         }catch(e){
-            console.log(e)
+            console.log(e);
         }
-        return result
+        return result;
     }
 
     public async format(arg:any){
-        let output = ''
+        let output = '';
         try{
             let comments = await this._getIssues(arg.comments_url)
             output += `<h1> ${arg.title} </h1>
             <p><span> Description :  </span> ${arg.body}</p>
-            <h2> comments:  </h2>`
+            <h2> comments:  </h2>`;
             comments = comments.map((_comment,i)=> {
                 return `<li><p> <img src='${_comment.user.avatar_url}' />
                 comment ${i} : #${_comment.id}# ${_comment.user.login} 
                 </p>
                 <p>${_comment.body}</p>
-                </li>`
+                </li>`;
             })
-            output += '<ul>' + comments.join(' ') + '</ul>'
+            output += '<ul>' + comments.join(' ') + '</ul>';
             output += 
             `<style>
                 img{
                     max-width: 30px;
                     max-height: 30px;
                 }    
-            </style>`
+            </style>`;
         }catch(e){
-            output += 'Loading failed.. check your internet connection'
-            console.log(e)
+            output += 'Loading failed.. check your internet connection';
+            console.log(e);
         }
-        return output
+        return output;
     }
 }
