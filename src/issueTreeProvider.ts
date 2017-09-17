@@ -18,18 +18,17 @@ export class IssueItemProvideer implements vscode.TreeDataProvider<IssueItem>{
 
     getChildren(element?: IssueItem): Thenable<IssueItem[]> {
         if (element) {
-            return Promise.resolve([])
+            return Promise.resolve([]);
         } else {
-            return this._getIssues()
+            return this._getIssues();
         }
     }
 
     private _getIssues() {
         return this.issues.getIssues().then(res => {
             return res.map((_issue) => {
-                let label = _issue.title + ' #' + _issue.id
-                /* Add a command to execute when item is selected */
-                return new IssueItem(label, vscode.TreeItemCollapsibleState.None)
+                let label = _issue.title + ' #' + _issue.id;
+                return new IssueItem(label, vscode.TreeItemCollapsibleState.None,_issue);
             })
         })
     }
@@ -39,10 +38,25 @@ class IssueItem extends vscode.TreeItem {
     constructor(
         public readonly label: string,
         public readonly collapsibleState: vscode.TreeItemCollapsibleState,
+        public issue:any,
         public readonly command?: vscode.Command
     ) {
         super(label, collapsibleState);
+        super.command = new ItemSelectCommand(issue);
     }
 
     contextValue = 'issue';
+}
+
+class ItemSelectCommand implements vscode.Command{
+    title: string;
+    command: string;
+    arguments: any[];
+
+    constructor(issue){
+        this.title = 'IssueSelect';
+        this.command = 'extension.ghc.treeItem.selected';
+        this.arguments = [];
+        this.arguments.push(issue);
+    }
 }
