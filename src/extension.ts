@@ -23,7 +23,7 @@ export function activate(context: vscode.ExtensionContext) {
     let milestoneListCommand = vscode.commands.registerCommand('extension.ghc.list.milestones',() => {
         const issues = new Issues(workspace.workspaceFolders[0].uri.path);
         issues.getMilestones().then(res => {
-            htmlProvider.formatMilestones(res).then(html => {
+            htmlProvider.formatMilestones(res,workspace.workspaceFolders[0].uri.path).then(html => {
                 workspace.openTextDocument({ content: html, language: "" }).then(doc => {
                     commands.executeCommand('vscode.previewHtml', doc.uri, 2,'Milestones').then(res => {
                         console.log(res);
