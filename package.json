@@ -11,7 +11,11 @@
     "Other"
   ],
   "activationEvents": [
-    "onCommand:extension.ghc"
+    "onCommand:extension.ghc",
+    "onCommand:extension.ghc.origin.url",
+    "onCommand:extension.ghc.add.token",
+    "onCommand:extension.ghc.add.label",
+    "onCommand:extension.ghc.remove.label"
   ],
   "main": "./out/src/extension",
   "contributes": {
@@ -19,9 +23,25 @@
       {
         "command": "extension.ghc",
         "title": "ghc-issues"
+      },
+      {
+        "command": "extension.ghc.origin.url",
+        "title": "ghc-origin set url"
+      },
+      {
+        "command": "extension.ghc.add.label",
+        "title": "ghc-issues labels add"
+      },
+      {
+        "command": "extension.ghc.add.token",
+        "title": "ghc-token add"
+      },
+      {
+        "command": "extension.ghc.remove.label",
+        "title": "ghc-issues labels remove"
       }
     ],
-    "views":{
+    "views": {
       "explorer": [
         {
           "id": "ghc.issue.treeView",
@@ -47,6 +67,7 @@
   "dependencies": {
     "axios": "^0.16.2",
     "git-remote-origin-url": "^2.0.0",
-    "git-url-parse": "^7.0.1"
+    "git-url-parse": "^7.0.1",
+    "jsonfile": "^4.0.0"
   }
 }
