@@ -13,7 +13,7 @@ export class HtmlProvider{
         return result;
     }
 
-    public async format(arg:any){
+    public async formatIssueData(arg:any){
         let output = '';
         try{
             let comments = await this._getIssues(arg.comments_url)
@@ -35,6 +35,26 @@ export class HtmlProvider{
                     max-height: 30px;
                 }    
             </style>`;
+        }catch(e){
+            output += 'Loading failed.. '+e.message;
+            console.error(e);
+        }
+        return output;
+    }
+
+    public async formatMilestones(arg){
+        let output = '';
+        try{
+            let milestones = arg.map((milestone,i) => {
+                return `<li> <h2>${i}# ${milestone.title} ---Id : ${milestone.id}</h2> 
+                <h3> description</h3>
+                <p>${milestone.description}</p>
+                <h3> created at ${milestone.created_at}</h3>
+                <h3> updated at ${milestone.updated_at}</h3>
+                <h3> Due on ${milestone.due_on}</h3>
+                </li>`;
+            });
+            output += '<ul>' + milestones.join(' ') + '</ul>';
         }catch(e){
             output += 'Loading failed.. '+e.message;
             console.error(e);

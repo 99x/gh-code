@@ -78,6 +78,18 @@ export class Issues {
         }
     }
 
+    public async getMilestones(){
+        try{
+            let meta = await this._getMetadata();
+            let apiUrl = api + '/repos/' + meta.user + '/' + meta.repo + '/milestones';
+            let res = await axios.get(apiUrl);
+            return res.data;
+        }catch(e){
+            console.error(e);
+            return false;
+        }
+    }
+
     public async addLabel(label: string, number: number) {
         try {
             if (config.getToken().length < 1) {

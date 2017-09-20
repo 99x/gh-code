@@ -20,6 +20,28 @@ export function activate(context: vscode.ExtensionContext) {
         vscode.window.registerTreeDataProvider('ghc.issue.treeView', issueItemProvider);
     });
 
+    let milestoneListCommand = vscode.commands.registerCommand('extension.ghc.list.milestones',() => {
+        const issues = new Issues(workspace.workspaceFolders[0].uri.path);
+        issues.getMilestones().then(res => {
+            htmlProvider.formatMilestones(res).then(html => {
+                workspace.openTextDocument({ content: html, language: "" }).then(doc => {
+                    commands.executeCommand('vscode.previewHtml', doc.uri, 2,'Milestones').then(res => {
+                        console.log(res);
+                    }, err => {
+                        console.error(err);
+                    })
+                }, err => {
+                    console.error(err);
+                });    
+            }).catch(err => {
+                console.error(err);
+                window.showErrorMessage('Loading milestones failed to the display '+ err.message);    
+            });
+        }).catch(err => {
+            console.error(err);
+            window.showErrorMessage('Loading milestones failed '+ err.message);
+        });
+    });
 
     let originUrlSet = vscode.commands.registerCommand('extension.ghc.origin.url', () => {
         window.showInputBox().then(res => {
@@ -36,7 +58,7 @@ export function activate(context: vscode.ExtensionContext) {
     let treeItemSelectCommand = vscode.commands.registerCommand('extension.ghc.treeItem.selected', (arg) => {
         console.log('tree item is selected ');
         console.log(arg);
-        htmlProvider.format(arg).then(html => {
+        htmlProvider.formatIssueData(arg).then(html => {
             workspace.openTextDocument({ content: html, language: "" }).then(doc => {
                 commands.executeCommand('vscode.previewHtml', doc.uri, 2, arg.title).then(res => {
                     console.log(res);
@@ -125,6 +147,7 @@ export function activate(context: vscode.ExtensionContext) {
     context.subscriptions.push(addTokenCommand);
     context.subscriptions.push(removeLabelCommand);
     context.subscriptions.push(addCommentCommand);
+    context.subscriptions.push(milestoneListCommand);
 }
 
 export function deactivate() {
