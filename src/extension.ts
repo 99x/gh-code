@@ -96,12 +96,35 @@ export function activate(context: vscode.ExtensionContext) {
         });
     });
 
+    let addCommentCommand = vscode.commands.registerCommand('extension.ghc.add.comment', () => {
+        window.showInputBox({
+            prompt: "Insert #issue number and 'comment Text",
+            placeHolder: "1# COMMENT"
+        }).then((arg) => {
+            const issues = new Issues(workspace.workspaceFolders[0].uri.path);
+            try {
+                let temp = arg.split('#');
+                issues.addComment(temp[1].trim(), Number.parseInt(temp[0])).then(res => {
+                    if (res) {
+                        window.showInformationMessage("Added the comment !!!");
+                    } else {
+                        window.showErrorMessage('Adding comment failed !!!');
+                    }
+                });
+            } catch (e) {
+                console.error(e);
+                window.showErrorMessage('Did you enter the correct format ? ' + e.message);
+            }
+        });
+    });
+
     context.subscriptions.push(issueListCommand);
     context.subscriptions.push(treeItemSelectCommand);
     context.subscriptions.push(originUrlSet);
     context.subscriptions.push(addLabelCommand);
     context.subscriptions.push(addTokenCommand);
     context.subscriptions.push(removeLabelCommand);
+    context.subscriptions.push(addCommentCommand);
 }
 
 export function deactivate() {
