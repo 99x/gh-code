@@ -39,7 +39,7 @@ export class Issues {
             let res = await axios.get(apiUrl);
             let labels = res.data;
             return labels.findIndex(_label => {
-                return _label.name == label;
+                return _label.name === label;
             });
         } catch (e) {
             console.error(e);
@@ -89,7 +89,7 @@ export class Issues {
             let apiUrl = api + '/repos/' + meta.user + '/' + meta.repo + '/issues/' + number + '/labels';
             let checkResult = await this._checkLabel(label);
 
-            if (checkResult == -1) {
+            if (checkResult === -1) {
                 let res = await this._createLabel(label);
                 if (res.status != 201) {
                     return false;
@@ -102,12 +102,7 @@ export class Issues {
                     password: config.getToken()
                 }
             });
-
-            if (res.status == 200) {
-                return true;
-            } else {
-                return false;
-            }
+            return res.status === 200;
         } catch (e) {
             console.error(e);
             return false;
@@ -128,11 +123,7 @@ export class Issues {
                     password: config.getToken()
                 }
             });
-            if(res.status == 200){
-                return true;
-            }else{
-                return false;
-            }
+            return res.status === 200;
         }catch(e){
             console.error(e);
             return false;
