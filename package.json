@@ -15,7 +15,9 @@
     "onCommand:extension.ghc.origin.url",
     "onCommand:extension.ghc.add.token",
     "onCommand:extension.ghc.add.label",
-    "onCommand:extension.ghc.remove.label"
+    "onCommand:extension.ghc.remove.label",
+    "onCommand:extension.ghc.add.comment",
+    "onCommand:extension.ghc.list.milestones"
   ],
   "main": "./out/src/extension",
   "contributes": {
@@ -39,6 +41,14 @@
       {
         "command": "extension.ghc.remove.label",
         "title": "ghc-issues labels remove"
+      },
+      {
+        "command": "extension.ghc.add.comment",
+        "title": "ghc-issues comment"
+      },
+      {
+        "command": "extension.ghc.list.milestones",
+        "title": "ghc-milestones"
       }
     ],
     "views": {

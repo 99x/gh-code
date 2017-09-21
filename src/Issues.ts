@@ -78,6 +78,18 @@ export class Issues {
         }
     }
 
+    public async getMilestones(){
+        try{
+            let meta = await this._getMetadata();
+            let apiUrl = api + '/repos/' + meta.user + '/' + meta.repo + '/milestones';
+            let res = await axios.get(apiUrl);
+            return res.data;
+        }catch(e){
+            console.error(e);
+            return false;
+        }
+    }
+
     public async addLabel(label: string, number: number) {
         try {
             if (config.getToken().length < 1) {
@@ -124,6 +136,30 @@ export class Issues {
                 }
             });
             return res.status === 200;
+        }catch(e){
+            console.error(e);
+            return false;
+        }
+    }
+
+    public async addComment(comment:string,number:number){
+        try{
+            if (config.getToken().length < 1) {
+                window.showInformationMessage('please add a token or set the password for adding labels');
+                return false;
+            }
+
+            let meta = await this._getMetadata();
+            let apiUrl = api + '/repos/' + meta.user + '/' + meta.repo + '/issues/' + number + '/comments';
+            let res = await axios.post(apiUrl, {
+                "body": comment
+            } , {
+                auth: {
+                    username: meta.user,
+                    password: config.getToken()
+                }
+            });
+            return res.status === 201;
         }catch(e){
             console.error(e);
             return false;
