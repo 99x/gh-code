@@ -1,17 +1,19 @@
 # gh-code
 
-***How to start ***
-git clone 
-npm install
-cd gh-code
-code .
-start debugging
-It will launch a vs code instance with the extension
+**A Visual Studio code plugin to easily manage issues in a git hub repository**
 
-*** How to use ***
-#Linux 
-Copy plugin folder to your ~/.vscode/extensions/ folder
-#windows
-Copy plugin folder to the .vscode/extensions folder
+## How to start
+- git clone 
+- npm install
+- cd gh-code
+- code .
+- start debugging
+- It will launch a vs code instance with the extension
 
-And it will be available in your plugins. 
+## How to use
+### Linux 
+- Copy plugin folder to your ~/.vscode/extensions/ folder
+### windows
+- Copy plugin folder to the .vscode/extensions folder
+
+- And it will be available in your plugins.
