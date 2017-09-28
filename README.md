@@ -23,15 +23,14 @@
 ### Getting a list of issues
 - ctrl + shift + p (Open command palate)
 - ghc-issues
-- ![](https://media.giphy.com/media/26n7aLvKRwx65HSjm/giphy.gif)
-- <img src="https://raw.githubusercontent.com/dilantha111/ghc-test/master/gifs/1.gif"/>
+- ![](https://raw.githubusercontent.com/dilantha111/ghc-test/master/gifs/1.gif)
 - clicking on each list item will open a window with the issue info
 
 ### Getting a list of milestones
 - ctrl + shift + p (Open command palate)
 - ghc-milestones
 - will open up a window with a list of milestones with details on each milestones
-- ![](https://media.giphy.com/media/3ohhwEA7XIgEcyhBT2/giphy.gif)
+- ![](https://raw.githubusercontent.com/dilantha111/ghc-test/master/gifs/2.gif)
 
 ### Adding meta data
 - ***When you open a local repo. It automatically tries to retrive the origin url from the git meta data. But there can be situations you need to add a different origin url. Or if the local repository is not created by the git clone command an origin url wouldn't be exist. In such cases you have to add origin url***
@@ -53,7 +52,7 @@
 - ctrl + shift + p (Open command palate)
 - ghc-issues labels add
 - Enter issue number followed by # and a space and the label name
-- ![](https://media.giphy.com/media/l378ypR24k5DArtMA/giphy.gif)
+- ![](https://raw.githubusercontent.com/dilantha111/ghc-test/master/gifs/3.gif)
 
 ### Removing a label on an issue
 - ctrl + shift + p (Open command palate)
