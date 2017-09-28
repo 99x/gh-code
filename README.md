@@ -24,6 +24,7 @@
 - ctrl + shift + p (Open command palate)
 - ghc-issues
 - ![](https://media.giphy.com/media/26n7aLvKRwx65HSjm/giphy.gif)
+- <img src="https://raw.githubusercontent.com/dilantha111/ghc-test/master/gifs/1.gif"/>
 - clicking on each list item will open a window with the issue info
 
 ### Getting a list of milestones
