@@ -59,3 +59,5 @@ typings/
 
 # output directory
 out
+
+.vscode-test
