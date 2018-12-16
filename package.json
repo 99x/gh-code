@@ -3,7 +3,11 @@
   "displayName": "gh-code",
   "description": "A plugin to easily manage github repos",
   "version": "0.0.1",
-  "publisher": "dilantha111",
+  "publisher": "99xt",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/99xt/gh-code"
+  },
   "engines": {
     "vscode": "^1.15.0"
   },
@@ -11,13 +15,7 @@
     "Other"
   ],
   "activationEvents": [
-    "onCommand:extension.ghc",
-    "onCommand:extension.ghc.origin.url",
-    "onCommand:extension.ghc.add.token",
-    "onCommand:extension.ghc.add.label",
-    "onCommand:extension.ghc.remove.label",
-    "onCommand:extension.ghc.add.comment",
-    "onCommand:extension.ghc.list.milestones"
+    "*"
   ],
   "main": "./out/src/extension",
   "contributes": {
@@ -52,10 +50,10 @@
       }
     ],
     "views": {
-      "explorer": [
+      "scm": [
         {
           "id": "ghc.issue.treeView",
-          "name": "Issues"
+          "name": "GITHUB ISSUES"
         }
       ]
     }
